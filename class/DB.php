@@ -1,16 +1,8 @@
 <?php
 
-$host = "localhost";
-$usuario = "root";
-$senha = "";
-$bd = "gestor";
+require_once 'config.php';
 
-$mysqli = new mysqli($host, $usuario, $senha, $bd);
-
-if($mysqli->connect_errno)
-  echo "Falha na conexão: (".$mysqli->connect_errno.") ".$mysqli->connect_error;
-
-class conexao{
+class DB{
 
 	private static $instance;
 
@@ -36,4 +28,3 @@ class conexao{
 	}
 
 }
-?>
