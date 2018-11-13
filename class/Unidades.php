@@ -7,7 +7,7 @@ class Unidades extends Crud{
 	protected $table = 'unidades';
 
 	private $tipo;
-	private $nome;
+	private $unidade;
 	private $cnes;
 	private $territorio;
 	private $cep;
@@ -19,12 +19,12 @@ class Unidades extends Crud{
 
 	//Get's e Set's
 
-	public function setNome($nome){
-		$this->nome = $nome;
+	public function setUnidade($unidade){
+		$this->unidade = $unidade;
 	}
 
-	public function getNome(){
-		return $this->nome;
+	public function getUnidade(){
+		return $this->unidade;
 	}
 
 	public function setCnes($cnes){
@@ -34,7 +34,13 @@ class Unidades extends Crud{
 	public function getCnes($cnes){
 		$this->cnes = $cnes;
 	}
-
+public function getTipo() {
+    return $this->tipo;
+}
+ 
+public function setTipo($tipo) {
+    $this->tipo = $tipo;
+}
 	public function getTerritorio() {
 	    return $this->territorio;
 	}
@@ -88,10 +94,10 @@ class Unidades extends Crud{
 
 	public function insert(){
 
-		$sql  = "INSERT INTO $this->table (udd_tipo, udd_nome, udd_cnes, udd_territorio, udd_cep, udd_endereco, udd_numero, udd_bairro, udd_cidade, udd_uf) VALUES (:tipo, :nome, :cnes, :territorio, :cep, :endereco, :numero, :bairro, :cidade, :uf)";
+		$sql  = "INSERT INTO $this->table (udd_tipo, udd_nome, udd_cnes, udd_territorio, udd_cep, udd_endereco, udd_numero, udd_bairro, udd_cidade, udd_uf) VALUES (:tipo, :unidade, :cnes, :territorio, :cep, :endereco, :numero, :bairro, :cidade, :uf)";
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(':tipo', $this->tipo);
-		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':unidade', $this->unidade);
 		$stmt->bindParam(':cnes', $this->cnes);
 		$stmt->bindParam(':territorio', $this->territorio);
 		$stmt->bindParam(':cep', $this->cep);
@@ -106,9 +112,9 @@ class Unidades extends Crud{
 
 	public function update($id){
 
-		$sql  = "UPDATE $this->table SET udd_nome = :nome, udd_cnes = :cnes WHERE udd_id = :id";
+		$sql  = "UPDATE $this->table SET udd_nome = :unidade, udd_cnes = :cnes WHERE udd_id = :id";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':unidade', $this->nome);
 		$stmt->bindParam(':cnes', $this->cnes);
 		$stmt->bindParam(':id', $id);
 		return $stmt->execute();
