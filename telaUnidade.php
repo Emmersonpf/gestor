@@ -10,9 +10,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
    <title>PHP OO</title>
-  <meta name="description" content="PHP OO" />
+  <meta name="description" content="GESTOR SAÚDE" />
   <meta name="robots" content="index, follow" />
-   <meta name="author" content="Andrew Esteves"/>
+   <meta name="author" content="Emmerson Pereira Ferreira"/>
    <link rel="stylesheet" href="css/bootstrap.css" />
   <link rel="stylesheet" />
   <!--[if lt IE 9]>
@@ -172,7 +172,7 @@
 				<span class="add-on"><i class="icon-envelope"></i></span>
 				<input type="text" name="certifica" value="<?php echo $resultado->udd_certificacao; ?>" placeholder="Certificação:" />
 			</div>
-			<input type="hidden" name="id" value="<?php echo $resultado->udd_id; ?>">
+			<input type="hidden" name="id" value="<?php echo $resultado->id; ?>">
 			<br />
 			<input type="submit" name="atualizar" class="btn btn-primary" value="Atualizar dados">					
 		</form>
@@ -250,12 +250,12 @@
 
 			<tbody>
 				<tr>
-					<td><?php echo $value->udd_id; ?></td>
+					<td><?php echo $value->id; ?></td>
 					<td><?php echo $value->udd_tipo." ".$value->udd_nome; ?></td>
 					<td><?php echo $value->udd_cnes; ?></td>
 					<td>
-						<?php echo "<a href='telaUnidade.php?acao=editar&id=" . $value->udd_id . "'>Editar</a>"; ?>
-						<?php echo "<a href='telaUnidade.php?acao=deletar&id=" . $value->udd_id . "' onclick='return confirm(\"Deseja realmente deletar?\")'>Deletar</a>"; ?>
+						<?php echo "<a href='telaUnidade.php?acao=editar&id=" . $value->id . "'>Editar</a>"; ?>
+						<?php echo "<a href='telaUnidade.php?acao=deletar&id=" . $value->id . "' onclick='return confirm(\"Deseja realmente deletar?\")'>Deletar</a>"; ?>
 					</td>
 				</tr>
 			</tbody>

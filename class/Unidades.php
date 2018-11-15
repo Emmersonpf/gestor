@@ -112,10 +112,18 @@ public function setTipo($tipo) {
 
 	public function update($id){
 
-		$sql  = "UPDATE $this->table SET udd_nome = :unidade, udd_cnes = :cnes WHERE udd_id = :id";
+		$sql  = "UPDATE $this->table SET udd_tipo = :tipo, udd_nome = :unidade, udd_cnes = :cnes, udd_territorio = :territorio, udd_cep = :cep, udd_endereco = :endereco, udd_numero = :numero, udd_bairro = :bairro, udd_cidade = :cidade, udd_uf = :uf WHERE id = :id";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':unidade', $this->nome);
+		$stmt->bindParam(':tipo', $this->tipo);
+		$stmt->bindParam(':unidade', $this->unidade);
 		$stmt->bindParam(':cnes', $this->cnes);
+		$stmt->bindParam(':territorio', $this->territorio);
+		$stmt->bindParam(':cep', $this->cep);
+		$stmt->bindParam(':endereco', $this->endereco);
+		$stmt->bindParam(':numero', $this->numero);
+		$stmt->bindParam(':bairro', $this->bairro);
+		$stmt->bindParam(':cidade', $this->cidade);
+		$stmt->bindParam(':uf', $this->uf);
 		$stmt->bindParam(':id', $id);
 		return $stmt->execute();
 

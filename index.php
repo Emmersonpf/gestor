@@ -4,7 +4,7 @@ if(!isset($_SESSION))
 
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 //Login de Usários
-if(isset($_POST[login])){
+if(isset($_POST[entrar])){
 
   include('config/conexao.php');
   
@@ -12,25 +12,25 @@ if(isset($_POST[login])){
 
   // Captação de dados
     $senha = $_POST[password];
-    $_SESSION['email'] = $mysqli->escape_string($_POST['email']);
+    $_SESSION['login'] = $mysqli->escape_string($_POST['login']);
 
     // Validação de dados
-    if(!filter_var($_SESSION['email'], FILTER_VALIDATE_EMAIL))
-        $erro[] = "Preencha seu <strong>e-mail</strong> corretamente.";
+    if(!filter_var($_SESSION['login']))
+        $erro[] = "Preencha seu <strong>Login</strong> corretamente.";
 
     if(strlen($senha) < 6 || strlen($senha) > 16)
         $erro[] = "Preencha sua <strong>senha</strong> corretamente.";
 
     if(count($erro) == 0){
 
-        $sql = "SELECT user_senha as senha, user_id as valor 
-        FROM usuario 
-        WHERE user_email = '$_SESSION[email]'";
+        $sql = "SELECT user_senha as senha, id as valor 
+        FROM usuarios 
+        WHERE user_login = '$_SESSION[login]'";
         $que = $mysqli->query($sql) or die($mysqli->error);
         $dado = $que->fetch_assoc();
         
         if($que->num_rows == 0)
-            $erro[] = "Nenhum usuário possui o <strong>e-mail</strong> informado.";
+            $erro[] = "Nenhum usuário possui o <strong>Login</strong> informado.";
 
         elseif(strcmp($dado[senha], ($senha)) == 0){
             $_SESSION[user_logado] = $dado[valor];
@@ -40,7 +40,7 @@ if(isset($_POST[login])){
         if(count($erro) == 0){
             echo "<script>location.href='private/index.php';</script>";
             exit();
-            unset($_SESSION['email']);
+            unset($_SESSION['login']);
         }
 
     }
@@ -99,7 +99,7 @@ if(isset($_POST[login])){
                         <form method="post" action="" role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input value="<?php if(isset($_SESSION['email'])) echo $_SESSION['email']; ?>" class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input value="<?php if(isset($_SESSION['login'])) echo $_SESSION['login']; ?>" class="form-control" placeholder="Login" name="login" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" required placeholder="Senha" name="password" type="password" value="">
@@ -110,7 +110,7 @@ if(isset($_POST[login])){
                                     </label>
                                 </div>
                                 
-                                <button type="submit" name="login" value="true" class="btn btn-success btn-block">Login</button>
+                                <button type="submit" name="entrar" value="true" class="btn btn-success btn-block">Login</button>
                             </fieldset>
                         </form>
                     </div>
